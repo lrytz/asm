@@ -32,12 +32,7 @@ import java.util.List;
 
 import scala.tools.asm.Opcodes;
 import scala.tools.asm.Type;
-import scala.tools.asm.tree.AbstractInsnNode;
-import scala.tools.asm.tree.IincInsnNode;
-import scala.tools.asm.tree.InvokeDynamicInsnNode;
-import scala.tools.asm.tree.MethodInsnNode;
-import scala.tools.asm.tree.MultiANewArrayInsnNode;
-import scala.tools.asm.tree.VarInsnNode;
+import scala.tools.asm.tree.*;
 
 /**
  * A symbolic execution stack frame. A stack frame contains a set of local variable slots, and an
@@ -692,6 +687,10 @@ public class Frame<V extends Value> {
     }
     return changed;
   }
+
+  public void initForJumpTarget(int opcode, boolean conditionTrue) { }
+
+  public void initForSwitchTarget(int opcode, LabelNode target) { }
 
   /**
    * Returns a string representation of this frame.
